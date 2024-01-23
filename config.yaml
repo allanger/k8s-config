@@ -8,8 +8,13 @@ repositories:
     url: oci://giantswarmpublic.azurecr.io/default-catalog/
   - name: badhouseplants
     url: https://git.badhouseplants.net/api/packages/allanger/helm
-
+  - name: fairwinds-stable
+    url: https://charts.fairwinds.com/stable
 charts:
+  - name: vpa
+    chart: vpa
+    repository: fairwinds-stable
+    version: 4.4.1
   - name: vaultwarden
     chart: vaultwarden
     repository: badhouseplants
