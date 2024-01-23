@@ -5,5 +5,5 @@ clusterRoles:
 crds:
   install: true
 verticalPodAutoscaler:
-  enabled: false
-  force: false
+  enabled: true
+  force: true
