@@ -1,0 +1,5 @@
+url: https://git.badhouseplants.net/giantswarm/cluster-example.git
+branch: master
+self:
+  url: https://git.badhouseplants.net/giantswarm/root-config.git
+  branch: master

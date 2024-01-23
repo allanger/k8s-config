@@ -1,0 +1,4 @@
+providerData:
+  enabled: true
+  name: capa
+  url: https://github.com/giantswarm/capa-app-collection

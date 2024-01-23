@@ -1,0 +1,11 @@
+cleanupController:
+  serviceMonitor:
+    enabled: false
+verticalPodAutoscaler:
+  admissionController:
+    enabled: false
+global:
+  podSecurityStandards:
+    enforced: true
+serviceMonitor:
+  enabled: false

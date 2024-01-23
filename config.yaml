@@ -1,0 +1,103 @@
+---
+repositories:
+  - name: badhouseplants-oci
+    url: oci://git.badhouseplants.net/allanger/helm
+  - name: flux-app
+    url: https://giantswarm.github.io/giantswarm-test-catalog/
+  - name: catalog-oci
+    url: oci://giantswarmpublic.azurecr.io/default-catalog/
+  - name: badhouseplants
+    url: https://git.badhouseplants.net/api/packages/allanger/helm
+
+charts:
+  - name: vaultwarden
+    chart: vaultwarden
+    repository: badhouseplants
+    version: 1.1.0
+  - name: namespaces
+    chart: namespaces
+    repository: badhouseplants-oci
+    version: 0.1.0
+  - name: root
+    chart: root
+    repository: badhouseplants-oci
+    version: 0.1.4
+  - name: flux-app
+    repository: flux-app
+    version: 1.2.0-faa5f89120c052b3d5850504a5ed86ab93b89b55
+
+releases:
+  - name: vaultwarden
+    chart: vaultwarden
+    repository: badhouseplants
+    version: 1.1.0
+    namespace: giantswarm
+
+  - name: vpa
+    chart: vpa
+    repository: fairwinds-stable
+    version: 4.4.1
+    namespace: giantswarm
+
+  - name: namespaces
+    repository: badhouseplants-oci
+    chart: namespaces
+    version: 0.1.0
+    namespace: default
+    installed: true
+    values:
+      - ./namespaces/values.yaml
+
+  - name: root
+    repository: badhouseplants-oci
+    chart: root
+    version: 0.1.5
+    namespace: flux-giantswarm
+    values:
+      - ./root/values.yaml
+  - name: vaultwarden
+    chart: vaultwarden
+    repository: badhouseplants
+    version: 1.1.0
+    namespace: giantswarm
+
+  - name: namespaces
+    repository: badhouseplants-oci
+    chart: namespaces
+    version: 0.1.0
+    namespace: default
+    installed: true
+    values:
+      - ./namespaces/values.yaml
+
+  - name: flux-giantswarm
+    chart: flux-app
+    version: 1.2.0-faa5f89120c052b3d5850504a5ed86ab93b89b55
+    repository: flux-app
+    installed: true
+    namespace: flux-system
+    createNamespace: false
+    values:
+      - ./values/aws/values.flux-aws.yaml
+      - ./values/common/values.flux.yaml
+
+clusters:
+  - name: root-config
+    git: git@git.badhouseplants.net:giantswarm/root-config.git
+    provider: flux
+    releases:
+      - root
+
+  - name: cluster-shoebill-test
+    git: git@git.badhouseplants.net:giantswarm/cluster-example.git
+    dotsops: |
+      creation_rules:
+        - path_regex: secrets/.*.yaml
+          key_groups:
+          - age:
+            - age16svfskd8x75g62f5uwpmgqzth52rr3wgv9m6rxchqv6v6kzmzf0qvhr2pk
+    provider: flux
+    releases:
+      - namespaces
+      - flux-giantswarm
+      - vpa

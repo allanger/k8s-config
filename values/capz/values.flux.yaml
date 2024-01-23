@@ -1,0 +1,4 @@
+providerData:
+  enabled: true
+  name: capz
+  url: https://github.com/giantswarm/capz-app-collection
