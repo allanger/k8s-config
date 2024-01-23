@@ -1,5 +1,5 @@
-url: git@github.com:allanger/cluster-example.git
+url: https://git.badhouseplants.net/giantswarm/cluster-example.git
 branch: master
 self:
-  url: git@github.com:allanger/root-config.git
+  url: https://git.badhouseplants.net/giantswarm/root-config.git
   branch: master
