@@ -8,8 +8,6 @@ repositories:
     url: oci://giantswarmpublic.azurecr.io/default-catalog/
   - name: badhouseplants
     url: https://git.badhouseplants.net/api/packages/allanger/helm
-  - name: fairwinds-stable
-    url: https://charts.fairwinds.com/stable
 
 charts:
   - name: vaultwarden
@@ -27,10 +25,6 @@ charts:
   - name: flux-app
     repository: flux-app
     version: 1.2.0-4d069f20f5d6ac2a0ecd1df8043c4aaff70b63bd
-  - name: vpa
-    chart: vpa
-    repository: fairwinds-stable
-    version: 4.4.1
 
 releases:
   - name: vaultwarden
@@ -89,13 +83,13 @@ releases:
 
 clusters:
   - name: root-config
-    git: git@github.com:allanger/root-config.git
+    git: git@git.badhouseplants.net:giantswarm/root-config.git
     provider: flux
     releases:
       - root
 
-  - name: cluster-test
-    git: git@github.com:allanger/cluster-example.git
+  - name: cluster-shoebill-test
+    git: git@git.badhouseplants.net:giantswarm/cluster-example.git
     dotsops: |
       creation_rules:
         - path_regex: secrets/.*.yaml
