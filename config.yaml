@@ -24,7 +24,7 @@ charts:
     version: 0.1.4
   - name: flux-app
     repository: flux-app
-    version: 1.2.0-faa5f89120c052b3d5850504a5ed86ab93b89b55
+    version: 1.2.0-4d069f20f5d6ac2a0ecd1df8043c4aaff70b63bd
 
 releases:
   - name: vaultwarden
@@ -72,7 +72,7 @@ releases:
 
   - name: flux-giantswarm
     chart: flux-app
-    version: 1.2.0-faa5f89120c052b3d5850504a5ed86ab93b89b55
+    version: 1.2.0-4d069f20f5d6ac2a0ecd1df8043c4aaff70b63bd
     repository: flux-app
     installed: true
     namespace: flux-system
